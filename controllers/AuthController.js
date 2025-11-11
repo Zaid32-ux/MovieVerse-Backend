@@ -229,8 +229,38 @@ const otpGenerator = function () {
     return Math.floor(100000 + Math.random() * 900000);
 }
 const protectRouteMiddleWare = async function (req, res, next) {
+    try {
+        let jwttoken = req.cookies.jwt;
+        if (!jwttoken) throw new Error("UnAuthorized!");
+
+        let decryptedToken = await promisifiedJWTVerify(jwttoken, JWT_SECRET_KEY);
+
+        if (decryptedToken) {
+            let userId = decryptedToken.id;
+            // adding the userId to the req object
+            req.userId = userId;
+            console.log("authenticated");
+            next();
+        }
+    } catch (err) {
+        res.status(500).json({
+            message: err.message,
+            status: "failure",
+        });
+    }
 };
 const logoutController = function (req, res) {
+    res.cookie("jwt", "", {
+        // how much time
+        maxAge:0,
+        httpOnly: true,
+        secure: true,
+    });
+
+    res.status(200).json({
+        status: "success",
+        message: "user logged out ",
+    });
 };
 module.exports = {
     forgetPasswordHandler,
