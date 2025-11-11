@@ -5,5 +5,5 @@ const AuthRouter = express.Router();
 AuthRouter.post("/login",loginHandler);
 AuthRouter.post("/signup",signupHandler);
 AuthRouter.patch("/forgetPassword",forgetPasswordHandler);
-AuthRouter.patch("/resetPassword/:userId",resetPasswordHandler);
+AuthRouter.patch("/resetPassword",resetPasswordHandler);
 module.exports = AuthRouter;

@@ -1,7 +1,13 @@
+const UserModel = require("../Model/UserModel");
+const emailSender = require("../utility/DynamicEmailSender");
+const jwt = require("jsonwebtoken");
+const promisify = require("util").promisify;
+const promisifiedJWTSign = promisify(jwt.sign);
+const promisifiedJWTVerify = promisify(jwt.verify);
+const { JWT_SECRET_KEY } = process.env;
 
 async function forgetPasswordHandler(req, res) {
     try {
-
         /****
          * 1. user send the email : extract email
          * 2. check if email is present in DB (user)
@@ -222,12 +228,17 @@ async function loginHandler(req, res) {
 const otpGenerator = function () {
     return Math.floor(100000 + Math.random() * 900000);
 }
-
-module.exports = {
-  signupHandler,
-  loginHandler,
-  forgetPasswordHandler,
-  resetPasswordHandler
+const protectRouteMiddleWare = async function (req, res, next) {
 };
+const logoutController = function (req, res) {
+};
+module.exports = {
+    forgetPasswordHandler,
+    resetPasswordHandler,
+    signupHandler,
+    loginHandler,
+    logoutController,
+    protectRouteMiddleWare,
 
+}
 

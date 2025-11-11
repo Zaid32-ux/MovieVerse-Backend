@@ -46,10 +46,7 @@ const schemaRules = {
     otpExpiry: {
         type: Date
     },
-    isPremium: {
-        type: Boolean,
-        default: false
-    },
+   
 }
 
 const userSchema = new mongoose.Schema(schemaRules);

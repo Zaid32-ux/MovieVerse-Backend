@@ -20,10 +20,14 @@ mongoose.connect(dbLink)
   app.use(express.json());
   app.use(cookieparser());
 
-const AuthRouter = require("./Routes/AuthRouter");
-const MovieRouter = require("./Routes/AuthRouter");
+const AuthRouter = require("./Router/AuthRouter");
+const MovieRouter = require("./Router/AuthRouter");
+const DiscoverRouter= require("./Router/DiscoverRouter")
+const TvShowsRouter = require("./Router/TvRouter");
 app.use("/api/auth",AuthRouter);
-app.use("/api/movies",MovieRouter)
+app.use("/api/movies",MovieRouter);
+app.use("/api/discover", DiscoverRouter);
+app.use("/api/tv", TvShowsRouter);
 
 
  
@@ -31,6 +35,6 @@ app.use("/api/movies",MovieRouter)
 
 
     
-app.listen(3000, function () {
-    console.log("Server started on port 3000")
+app.listen(3001, function () {
+    console.log("Server started on port 3001")
 })
