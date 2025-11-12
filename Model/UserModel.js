@@ -1,6 +1,10 @@
 const mongoose = require("mongoose");
 
-
+const wishlistItemSchema = new mongoose.Schema({
+    poster_path: { type: String, required: true },
+    name: { type: String, required: true },
+    id: { type: String, required: true }
+});
 /*******************userModel*********************/
 // user create -> Jio cinema  -> set of rules
 const schemaRules = {
@@ -46,6 +50,11 @@ const schemaRules = {
     otpExpiry: {
         type: Date
     },
+    isPremium: {
+        type: Boolean,
+        default: false
+    },
+     wishlist: [wishlistItemSchema],
    
 }
 
