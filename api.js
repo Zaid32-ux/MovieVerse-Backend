@@ -24,12 +24,15 @@ const AuthRouter = require("./Router/AuthRouter");
 const MovieRouter = require("./Router/AuthRouter");
 const DiscoverRouter= require("./Router/DiscoverRouter")
 const TvShowsRouter = require("./Router/TvRouter");
-const UserRouter = require("./Routers/UserRouter");
+const UserRouter = require("./Router/UserRouter");
+const PaymentRouter = require("./Router/PaymentRouter");
+
 app.use("/api/auth",AuthRouter);
 app.use("/api/movies",MovieRouter);
 app.use("/api/discover", DiscoverRouter);
 app.use("/api/tv", TvShowsRouter);
 app.use("/api/user", UserRouter);
+app.use("/api/payment", PaymentRouter);
 
 
  
